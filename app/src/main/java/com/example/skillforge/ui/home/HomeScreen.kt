@@ -120,16 +120,18 @@ fun HomeHeader() {
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically
     ) {
-        Column {
+        Column(modifier = Modifier.weight(1f)) {
             Text(
                 text = "Welcome back",
                 style = MaterialTheme.typography.bodyMedium
             )
             Text(
                 text = "Find your next skill",
-                style = MaterialTheme.typography.displayLarge.copy(fontSize = 28.sp)
+                style = MaterialTheme.typography.displayLarge.copy(fontSize = 28.sp, lineHeight = 34.sp)
             )
         }
+        
+        Spacer(modifier = Modifier.width(16.dp))
         
         Row(verticalAlignment = Alignment.CenterVertically) {
             Box(
