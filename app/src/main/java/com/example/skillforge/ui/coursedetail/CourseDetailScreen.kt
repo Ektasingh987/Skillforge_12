@@ -53,7 +53,7 @@ fun CourseDetailScreen(
         LazyColumn(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(bottom = 80.dp) // space for bottom bar
+                .padding(bottom = 100.dp) // space for bottom bar
         ) {
             item {
                 HeroBanner(
@@ -93,7 +93,7 @@ fun CourseDetailScreen(
                         lineHeight = 22.sp
                     )
                     
-                    Spacer(modifier = Modifier.height(32.dp))
+                    Spacer(modifier = Modifier.height(30.dp))
                     Row(
                         modifier = Modifier.fillMaxWidth(),
                         horizontalArrangement = Arrangement.SpaceBetween,
@@ -108,7 +108,7 @@ fun CourseDetailScreen(
                             style = MaterialTheme.typography.bodyMedium
                         )
                     }
-                    Spacer(modifier = Modifier.height(16.dp))
+                    Spacer(modifier = Modifier.height(10.dp))
                 }
             }
             
@@ -119,8 +119,11 @@ fun CourseDetailScreen(
                     modifier = Modifier.padding(horizontal = 24.dp, vertical = 8.dp)
                 )
             }
+
         }
-        
+        Spacer(modifier = Modifier.height(30.dp))
+
+
         // Bottom Fixed Bar
         Surface(
             modifier = Modifier.align(Alignment.BottomCenter),
@@ -130,7 +133,7 @@ fun CourseDetailScreen(
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(24.dp),
+                    .padding(22.dp),
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.SpaceBetween
             ) {

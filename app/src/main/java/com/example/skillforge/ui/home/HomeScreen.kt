@@ -116,7 +116,7 @@ fun HomeHeader() {
         modifier = Modifier
             .fillMaxWidth()
             .statusBarsPadding()
-            .padding(start = 24.dp, end = 24.dp, top = 16.dp, bottom = 24.dp),
+            .padding(start = 20.dp, end = 20.dp, top = 16.dp, bottom = 24.dp),
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically
     ) {
@@ -127,7 +127,7 @@ fun HomeHeader() {
             )
             Text(
                 text = "Find your next skill",
-                style = MaterialTheme.typography.displayLarge.copy(fontSize = 22.sp),
+                style = MaterialTheme.typography.displayLarge.copy(fontSize = 24.sp),
                 maxLines = 1
             )
         }

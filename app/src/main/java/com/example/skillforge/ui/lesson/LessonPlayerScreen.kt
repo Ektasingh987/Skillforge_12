@@ -94,14 +94,47 @@ fun LessonPlayerScreen(
     }
 }
 
+@androidx.annotation.OptIn(androidx.media3.common.util.UnstableApi::class)
 @Composable
 fun VideoPlayerPlaceholder(category: String, onNavigateBack: () -> Unit) {
+    val context = androidx.compose.ui.platform.LocalContext.current
+    val exoPlayer = remember {
+        androidx.media3.exoplayer.ExoPlayer.Builder(context).build().apply {
+            val videoUrl = "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
+            setMediaItem(androidx.media3.common.MediaItem.fromUri(videoUrl))
+            prepare()
+            playWhenReady = true
+        }
+    }
+
+    DisposableEffect(Unit) {
+        onDispose {
+            exoPlayer.release()
+        }
+    }
+
     Box(
         modifier = Modifier
             .fillMaxWidth()
             .heightIn(min = 280.dp)
-            .background(Brush.verticalGradient(listOf(TealGradientStart, TealGradientEnd)))
+            .background(Color.Black)
     ) {
+        androidx.compose.ui.viewinterop.AndroidView(
+            factory = { ctx ->
+                androidx.media3.ui.PlayerView(ctx).apply {
+                    player = exoPlayer
+                    useController = true
+                    setShowNextButton(false)
+                    setShowPreviousButton(false)
+                }
+            },
+            modifier = Modifier
+                .fillMaxWidth()
+                .heightIn(min = 280.dp)
+                .statusBarsPadding()
+        )
+
+        // Overlay top bar for back button and category
         Row(
             modifier = Modifier
                 .fillMaxWidth()
@@ -114,7 +147,7 @@ fun VideoPlayerPlaceholder(category: String, onNavigateBack: () -> Unit) {
                 onClick = onNavigateBack,
                 modifier = Modifier
                     .clip(CircleShape)
-                    .background(Color.Black.copy(alpha = 0.3f))
+                    .background(Color.Black.copy(alpha = 0.5f))
                     .size(40.dp)
             ) {
                 Icon(Icons.Default.ArrowBack, contentDescription = "Back", tint = Color.White)
@@ -123,55 +156,13 @@ fun VideoPlayerPlaceholder(category: String, onNavigateBack: () -> Unit) {
             Box(
                 modifier = Modifier
                     .clip(MaterialTheme.shapes.small)
-                    .background(Color.Black.copy(alpha = 0.3f))
+                    .background(Color.Black.copy(alpha = 0.5f))
                     .padding(horizontal = 8.dp, vertical = 4.dp)
             ) {
                 Text("// ${category.lowercase()}", color = Color.White, style = MaterialTheme.typography.labelMedium.copy(fontWeight = FontWeight.Bold))
             }
             
-            IconButton(
-                onClick = { /* Fullscreen */ },
-                modifier = Modifier
-                    .clip(CircleShape)
-                    .background(Color.Black.copy(alpha = 0.3f))
-                    .size(40.dp)
-            ) {
-                Icon(Icons.Default.Fullscreen, contentDescription = "Fullscreen", tint = Color.White)
-            }
-        }
-        
-        Box(
-            modifier = Modifier
-                .align(Alignment.Center)
-                .size(64.dp)
-                .clip(CircleShape)
-                .background(Color.White)
-                .clickable { /* Toggle Play/Pause */ },
-            contentAlignment = Alignment.Center
-        ) {
-            Icon(Icons.Default.PlayArrow, contentDescription = "Play", tint = TealPrimary, modifier = Modifier.size(32.dp))
-        }
-        
-        Row(
-            modifier = Modifier
-                .align(Alignment.BottomCenter)
-                .fillMaxWidth()
-                .padding(horizontal = 16.dp, vertical = 16.dp),
-            verticalAlignment = Alignment.CenterVertically
-        ) {
-            Text("02:14", color = Color.White, style = MaterialTheme.typography.labelMedium)
-            Spacer(modifier = Modifier.width(8.dp))
-            Box(
-                modifier = Modifier
-                    .weight(1f)
-                    .height(4.dp)
-                    .background(Color.White.copy(alpha = 0.3f))
-            ) {
-                Box(modifier = Modifier.fillMaxHeight().fillMaxWidth(0.3f).background(Color.White))
-                Box(modifier = Modifier.size(12.dp).clip(CircleShape).background(Color.White).align(Alignment.CenterStart).offset(x = 100.dp))
-            }
-            Spacer(modifier = Modifier.width(8.dp))
-            Text("06:00", color = Color.White, style = MaterialTheme.typography.labelMedium)
+            Spacer(modifier = Modifier.size(40.dp)) // Empty space for symmetry
         }
     }
 }
