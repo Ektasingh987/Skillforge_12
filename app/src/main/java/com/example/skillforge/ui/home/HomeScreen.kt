@@ -127,7 +127,8 @@ fun HomeHeader() {
             )
             Text(
                 text = "Find your next skill",
-                style = MaterialTheme.typography.displayLarge.copy(fontSize = 28.sp, lineHeight = 34.sp)
+                style = MaterialTheme.typography.displayLarge.copy(fontSize = 22.sp),
+                maxLines = 1
             )
         }
         
