@@ -153,7 +153,8 @@ fun HomeHeader() {
                     text = "AS",
                     color = Color.White,
                     fontWeight = FontWeight.Bold,
-                    fontSize = 18.sp
+                    fontSize = 16.sp,
+                    maxLines = 1
                 )
             }
         }

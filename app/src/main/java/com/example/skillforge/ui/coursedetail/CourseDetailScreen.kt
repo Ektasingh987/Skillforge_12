@@ -279,7 +279,7 @@ fun InstructorCard(name: String, title: String, avatarUrl: String) {
                     }
                 )
                 // Fallback text if image fails or is empty, but we'll let it be.
-                Text("AS", color = Color.White, fontWeight = FontWeight.Bold)
+                Text("AS", color = Color.White, fontWeight = FontWeight.Bold, fontSize = 16.sp, maxLines = 1)
             }
             
             Spacer(modifier = Modifier.width(16.dp))
