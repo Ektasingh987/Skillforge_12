@@ -43,6 +43,9 @@ Routing is handled through Jetpack Navigation Compose using a central `NavGraph`
 3. Let Gradle sync and download all dependencies.
 4. Run the `app` module on an emulator or physical device (minSdk 24+).
 
+> **Quick Test**: Want to test the app immediately without building? 
+> 📲 **[Download Skillforge.apk](https://github.com/Ektasingh987/Skillforge_12/raw/main/Skillforge.apk)**
+
 > **Note**: This app does not require any API keys. It fetches its mock content from a single public endpoint.
 
 ---
