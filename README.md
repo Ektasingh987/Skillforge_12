@@ -1,5 +1,7 @@
 # Skillforge 
 
+> 📲 **[Download the pre-compiled APK here!](https://github.com/Ektasingh987/Skillforge_12/raw/main/Skillforge.apk)**
+
 An Android learning application built for an Android Developer assessment. 
 The app features a 3-screen flow (Home → Course Detail → Lesson Player) and is built entirely with Jetpack Compose.
 
